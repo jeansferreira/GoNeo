@@ -17,18 +17,9 @@ services:
       args:
         app_env: ${APP_ENV}
     volumes:
-      - ./api:/go/src/github.com/user/GoDoRP/api
+      - ./api:/go/src/github.com/user/GoNeo/api
     ports:
       - "5000:8080"
     links:
       - db
 
-  frontend:
-    build:
-      context: ./frontend
-      args:
-        app_env: ${APP_ENV}
-    volumes:
-      - ./frontend/src:/frontend/src 
-    ports:
-      - "3000:3000"
