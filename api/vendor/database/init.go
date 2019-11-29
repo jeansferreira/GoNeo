@@ -9,12 +9,6 @@ import (
 var DB *gorm.DB
 var err error
 
-// type Post struct {
-// 	gorm.Model
-// 	Author  string
-// 	Message string
-// }
-
 func addDatabase(dbname string) error {
 	// create database with dbname, won't do anything if db already exists
 	dbname = "postgres"

@@ -12,9 +12,9 @@ import (
 	"bufio"
 	"regexp"
 
-	"github.com/user/GoDoRP/api/model"
-	"github.com/user/GoDoRP/api/repo"
-	"github.com/user/GoDoRP/api/tratamento"
+	"github.com/user/GoNeo/api/model"
+	"github.com/user/GoNeo/api/repo"
+	"github.com/user/GoNeo/api/tratamento"
 
 )
 

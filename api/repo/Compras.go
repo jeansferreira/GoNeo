@@ -1,23 +1,14 @@
 package repo
 
 import (
-	"github.com/user/GoDoRP/api/tratamento"
-	"github.com/user/GoDoRP/api/model"
+	"github.com/user/GoNeo/api/tratamento"
+	"github.com/user/GoNeo/api/model"
 	"fmt"
-    
-    "github.com/jinzhu/gorm"
+	"github.com/jinzhu/gorm"
 )
 
 var dbConn *gorm.DB
 var err error
-
-const (
-    host     = "localhost"
-    port     = 5432
-    user     = "docker"
-    password = "docker"
-    dbname   = "postgres"
-  )
 
 type Compra struct {
     gorm.Model
@@ -48,12 +39,17 @@ func InsereDados(mov []model.Compra) {
     }
 
     for i := 0; i < len(mov); i++ {
-        fmt.Println("CNPJ inserido: ", tratamento.RemoveCaracteres(mov[i].Cpf_cnpj_comprador))
+
+    	if (i % 100 == 0){
+    		// var compra Compra
+      		fmt.Println("Quantidade de Registros: ", i);
+      		// fmt.Println(dbConn.First(&compra, i))
+    	}
 
         ticket := Compra{
                 Cpf_cnpj_comprador: tratamento.RemoveCaracteres(mov[i].Cpf_cnpj_comprador),Flg_private: mov[i].Flg_private, Flg_incompleto: mov[i].Flg_incompleto, Dt_ultima_compra: mov[i].Dt_ultima_compra, Vl_ticket_ult_compra: mov[i].Vl_ticket_ult_compra, Cnpj_loja_freq: tratamento.RemoveCaracteres(mov[i].Cnpj_loja_freq), Cnpj_loja_ultima: tratamento.RemoveCaracteres(mov[i].Cnpj_loja_ultima)}
 
-        dbConn.Create(&ticket)
+        dbConn.Save(&ticket)
     }
 
 }
